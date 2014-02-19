@@ -7,6 +7,17 @@ namespace JLeight.FeatureFlags.Tests
     public class FeatureFacts
     {
         [Fact]
+        public void FeatureMustHaveName()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Feature(null, true));
+            Assert.Throws<ArgumentNullException>(() => new Feature(null, (MethodInfo)null));
+            Assert.Throws<ArgumentNullException>(() => new Feature(string.Empty, true));
+            Assert.Throws<ArgumentNullException>(() => new Feature(string.Empty, (MethodInfo)null));
+            Assert.Throws<ArgumentNullException>(() => new Feature(" ", true));
+            Assert.Throws<ArgumentNullException>(() => new Feature(" ", (MethodInfo)null));
+        }
+
+        [Fact]
         public void StaticEnabledFeatureIsEnabled()
         {
             var feature = new Feature("StaticEnabled", true);

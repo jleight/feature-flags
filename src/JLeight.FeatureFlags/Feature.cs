@@ -23,6 +23,8 @@ namespace JLeight.FeatureFlags
 
         public Feature(string name, bool enabled)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException("name");
 
             this.name = name;
             this.enabled = enabled;
@@ -30,6 +32,9 @@ namespace JLeight.FeatureFlags
 
         public Feature(string name, MethodInfo callback)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException("name");
+
             this.name = name;
             this.callback = callback;
         }
