@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\DisabledAttribute.cs" />
+    <Compile Include="Attributes\EnabledAttribute.cs" />
+    <Compile Include="Attributes\IFeatureAttribute.cs" />
     <Compile Include="Feature.cs" />
     <Compile Include="IFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
