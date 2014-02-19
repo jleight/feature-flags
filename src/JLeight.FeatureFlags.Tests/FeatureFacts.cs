@@ -18,6 +18,44 @@ namespace JLeight.FeatureFlags.Tests
         }
 
         [Fact]
+        public void FeaturesWithSameNameShouldBeEqual()
+        {
+            var enabled = typeof(FeatureFacts)
+                .GetMethod("Enabled");
+            var disabled = typeof(FeatureFacts)
+                .GetMethod("Disabled");
+            Assert.Equal(new Feature("Feature", true), new Feature("Feature", true));
+            Assert.Equal(new Feature("Feature", true), new Feature("Feature", false));
+            Assert.Equal(new Feature("Feature", true), new Feature("Feature", enabled));
+            Assert.Equal(new Feature("Feature", enabled), new Feature("Feature", enabled));
+            Assert.Equal(new Feature("Feature", enabled), new Feature("Feature", disabled));
+            Assert.True(new Feature("Feature", true).Equals(new Feature("Feature", true)));
+            Assert.True(new Feature("Feature", true).Equals(new Feature("Feature", false)));
+            Assert.True(new Feature("Feature", true).Equals(new Feature("Feature", enabled)));
+            Assert.True(new Feature("Feature", enabled).Equals(new Feature("Feature", enabled)));
+            Assert.True(new Feature("Feature", enabled).Equals(new Feature("Feature", disabled)));
+        }
+
+        [Fact]
+        public void FeaturesWithDifferentNameShouldBeDifferent()
+        {
+            var enabled = typeof(FeatureFacts)
+                .GetMethod("Enabled");
+            var disabled = typeof(FeatureFacts)
+                .GetMethod("Disabled");
+            Assert.NotEqual(new Feature("Feature1", true), new Feature("Feature2", true));
+            Assert.NotEqual(new Feature("Feature1", true), new Feature("Feature2", false));
+            Assert.NotEqual(new Feature("Feature1", true), new Feature("Feature2", enabled));
+            Assert.NotEqual(new Feature("Feature1", enabled), new Feature("Feature2", enabled));
+            Assert.NotEqual(new Feature("Feature1", enabled), new Feature("Feature2", disabled));
+            Assert.False(new Feature("Feature1", true).Equals(new Feature("Feature2", true)));
+            Assert.False(new Feature("Feature1", true).Equals(new Feature("Feature2", false)));
+            Assert.False(new Feature("Feature1", true).Equals(new Feature("Feature2", enabled)));
+            Assert.False(new Feature("Feature1", enabled).Equals(new Feature("Feature2", enabled)));
+            Assert.False(new Feature("Feature1", enabled).Equals(new Feature("Feature2", disabled)));
+        }
+
+        [Fact]
         public void StaticEnabledFeatureIsEnabled()
         {
             var feature = new Feature("StaticEnabled", true);
