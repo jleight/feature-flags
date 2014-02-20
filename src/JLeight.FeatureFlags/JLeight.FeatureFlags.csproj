@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,6 +45,7 @@
     <Compile Include="Attributes\IFeatureAttribute.cs" />
     <Compile Include="Exceptions\FeatureNotConfiguredException.cs" />
     <Compile Include="Exceptions\FeatureException.cs" />
+    <Compile Include="Factories\FeatureFactory.cs" />
     <Compile Include="Feature.cs" />
     <Compile Include="IFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
