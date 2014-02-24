@@ -46,6 +46,7 @@
     <Compile Include="AppSettingsFacts.cs" />
     <Compile Include="FeatureFactoryFacts.cs" />
     <Compile Include="FeatureFacts.cs" />
+    <Compile Include="FeaturesConfigurationFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
