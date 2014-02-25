@@ -31,8 +31,8 @@ namespace JLeight.FeatureFlags.Tests
         [Fact]
         public void AppSettingsDisabledFeatureIsDisabled()
         {
-            var feature = FeatureFactory.FromAppSettings("Feature", "feature:EnabledFeature");
-            Assert.True(feature.IsEnabled);
+            var feature = FeatureFactory.FromAppSettings("Feature", "feature:DisabledFeature");
+            Assert.False(feature.IsEnabled);
         }
 
         [Fact]
