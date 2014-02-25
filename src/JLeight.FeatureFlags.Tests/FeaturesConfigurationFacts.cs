@@ -12,7 +12,7 @@ namespace JLeight.FeatureFlags.Tests
         }
 
         [Fact]
-        public void ConfigSectionDisabledElementIsEnabled()
+        public void ConfigSectionDisabledElementIsDisabled()
         {
             Assert.False(FeaturesSection.Features["ConfigSectionDisabledFeature"].IsEnabled);
         }
