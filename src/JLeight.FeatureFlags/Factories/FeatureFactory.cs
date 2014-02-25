@@ -1,4 +1,5 @@
 ﻿using JLeight.FeatureFlags.Attributes;
+using JLeight.FeatureFlags.Configuration;
 using JLeight.FeatureFlags.Exceptions;
 using System;
 using System.Configuration;
@@ -29,6 +30,15 @@ namespace JLeight.FeatureFlags.Factories
 
             var message = string.Format("Feature value is not a valid boolean: {0}", value);
             throw new FeatureException(message);
+        }
+
+        public static Feature FromConfigSection(string name)
+        {
+            if (!FeaturesSection.Features.ContainsKey(name))
+                throw new FeatureNotConfiguredException(name);
+
+            var enabled = FeaturesSection.Features[name].IsEnabled;
+            return new Feature(name, enabled);
         }
     }
 }

@@ -41,5 +41,25 @@ namespace JLeight.FeatureFlags.Tests
             Assert.Throws<FeatureException>(() => FeatureFactory.FromAppSettings("Feature", "feature:InvalidFeature"));
             Assert.Throws<FeatureNotConfiguredException>(() => FeatureFactory.FromAppSettings("Feature", "feature:NonexistentFeature"));
         }
+
+        [Fact]
+        public void ConfigSectionEnabledFeatureIsEnabled()
+        {
+            var feature = FeatureFactory.FromConfigSection("ConfigSectionEnabledFeature");
+            Assert.True(feature.IsEnabled);
+        }
+
+        [Fact]
+        public void ConfigSectionDisabledFeatureIsDisabled()
+        {
+            var feature = FeatureFactory.FromConfigSection("ConfigSectionDisabledFeature");
+            Assert.False(feature.IsEnabled);
+        }
+
+        [Fact]
+        public void ConfigSectionInvalidFeatureThrowsException()
+        {
+            Assert.Throws<FeatureNotConfiguredException>(() => FeatureFactory.FromConfigSection("ConfigSectionNonexistentFeature"));
+        }
     }
 }
